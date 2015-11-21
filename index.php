@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Freelancer - Start Bootstrap Theme</title>
+    <title>On Road</title>
 
     <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -21,6 +21,11 @@
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+
+
+    <!-- stilo para linea de timpo -->
+    <link rel="stylesheet" href="css/lineatiempo.css">
+    <link rel="stylesheet" href="css/rrecorrido.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -35,6 +40,7 @@
 
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-fixed-top">
+
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header page-scroll">
@@ -44,26 +50,9 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#page-top">Start Bootstrap</a>
+                <a class="navbar-brand" href="#page-top">ON ROAD</a>
             </div>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="hidden">
-                        <a href="#page-top"></a>
-                    </li>
-                    <li class="page-scroll">
-                        <a href="#portfolio">Portfolio</a>
-                    </li>
-                    <li class="page-scroll">
-                        <a href="#about">About</a>
-                    </li>
-                    <li class="page-scroll">
-                        <a href="#contact">Contact</a>
-                    </li>
-                </ul>
-            </div>
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container-fluid -->
@@ -71,15 +60,251 @@
 
     <!-- Header -->
     <header>
-        <div class="container">
+        <div class="container" id= "contenido">
             <div class="row">
-                <div class="col-lg-12">
-                    <img class="img-responsive" src="img/profile.png" alt="">
-                    <div class="intro-text">
-                        <span class="name">ONROAD</span>
-                        <hr class="star-light">
-                        <span class="skills">Facil, rapido y cencillo</span> 
+                <div class="col-lg-12" id="contenedor">
+                    <div id="divMontoDinero">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">                    
+                                    <img class="img-responsive img-circle" src="img/monto.png" alt="">
+                                    <div class="intro-text">
+                                        <div class="form form-horizontal" role="form">
+                                            <div class="form-group">
+                                                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xs-offset-4 col-sm-offset-4 col-md-offset-4 col-lg-offset-4">
+                                                  <input type="number" class="form-control" id="monto" requery>
+                                                </div>              
+                                                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">                 
+                                                  <button onClick="enviarMonto()" type="button" class="btn btn-danger" id="enviar">>></button>
+                                                </div>
+                                            </div>
+                                        </div>  
+                                    </div>
+                                </div>                        
                     </div>
+
+                    <div id="divNumeroGente" class="hidden">             
+                       
+
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">                    
+                                    <div class="intro-text">
+                                        <div class="form form-horizontal" role="form">
+                                        <h1><strong>¿Cuantos te acompañan?</strong></h1>    
+                                        <i class="fa fa-child fa-5x"></i> <i class="fa fa-child fa-5x"></i> <i class="fa fa-child fa-5x"></i>                                            
+                                    </div>
+                                    <br/    >
+                                <div class="form-group">                                    
+                                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xs-offset-4 col-sm-offset-4 col-md-offset-4 col-lg-offset-4">
+                                      <input type="text" class="form-control" id="numeroGente" >
+                                    </div>              
+                                    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">                 
+                                      <button onClick="enviarNumeroGente()" type="button" class="btn btn-danger" id="enviar">>></button>
+                                    </div>
+                                </div>    
+                                        </div>  
+                                    </div>
+                                </div>                        
+
+                    <div id = "recorrido1"class="hidden">
+                    </div>                      
+
+                    <div id="divTieneCarro" class="hidden">
+                        <div class="col-lg-12 col-md-8 col-sm-8">
+                          <h3 for="">¿Cuenta con un carro? <i class="fa fa-car fa-2x"></i></h3  >
+                        </div>
+                        <div class="col-lg-12 col-md-2 col-sm-2">
+                          <a id="hasCarYes" onClick="sendHasCar(1)" class="btn bn-lg btn-outline">Sí <i class="fa fa-check "></i></a>
+                        </div>
+                        <div class="col-lg-12 col-md-2 col-sm-2">
+                          <a id="hasCarNo" onClick="sendHasCar(0)" class="btn bn-lg btn-outline">No <i class="fa fa-times "></i></a>
+                        </div>
+                    </div>   
+
+                    <div id="divRecorridos" class="hidden">
+                    <ul class="event-list">
+                    <li onClick="detalleRecorrido1()">
+                        <img alt="Independence Day" src="img/r1/lagoyojoa.jpg" />
+                        <img alt="Independence Day" src="img/r1/panacam.jpg" />
+                        <img alt="Independence Day" src="img/r1/siguatepeque.jpg" />
+                        <div class="info">
+                            <h2 class="title"></h2>
+                            <p style = "color :black;"class="black">Lago de Yojoa - Panacam - Siguatepeque</p>
+                        </div>
+                        <div class="social">
+                            <ul>
+                                <li class="facebook" style="width:33%;"><a href="#facebook"><span class="fa fa-facebook"></span></a></li>
+                                <li class="twitter" style="width:34%;"><a href="#twitter"><span class="fa fa-twitter"></span></a></li>
+                                <li class="google-plus" style="width:33%;"><a href="#google-plus"><span class="fa fa-google-plus"></span></a></li>
+                            </ul>
+                        </div>  
+                    </li>
+                    <li onClick="detalleRecorrido2()"> 
+                        <img alt="Independence Day" src="img/r2/ceiba.jpg" />
+                        <img alt="Independence Day" src="img/r2/tela.jpg" />
+                        <img alt="Independence Day" style="display: none;" src="img/r1/siguatepeque.jpg" />
+                        <div class="info">
+                            <h2 class="title"></h2>
+                            <p style = "color:black;"class="black text-center">Ceiba - Tela</p>
+                        </div>
+                        <div class="social">
+                            <ul>
+                                <li class="facebook" style="width:33%;"><a href="#facebook"><span class="fa fa-facebook"></span></a></li>
+                                <li class="twitter" style="width:34%;"><a href="#twitter"><span class="fa fa-twitter"></span></a></li>
+                                <li class="google-plus" style="width:33%;"><a href="#google-plus"><span class="fa fa-google-plus"></span></a></li>
+                            </ul>
+                        </div>
+                    </li>                    
+                </ul>                                            
+                    </div> 
+
+                    <div id="detalleR1" class="hidden">
+                        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <h3 class="text-center">La ruta a seguir es la siguiente</h3>
+              <p>Para poder alcanzar tu destino es necesario que te guíes por esta secuencia 
+                 de lugares que te serán agradables, en ellos podrás disfrutar de lo maravilloso 
+                 que es nuestro país HONDURAS.
+              </p>
+              <ul class="timeline">
+                <li>
+                  <div class="timeline-image">
+                    <img class="img-circle img-responsive" src="img//r1/lagoyojoa.jpg" alt="">
+                  </div>
+                  <div class="timeline-panel">
+                    <div class="timeline-heading">
+                      <h4>Step One</h4>
+                      <h4 class="subheading">Subtitle</h4>
+                    </div>
+                    <div class="timeline-body">
+                      <p class="text-muted">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                      </p>
+                    </div>
+                  </div>
+                  <div class="line"></div>
+                </li>
+                <li class="timeline-inverted">
+                  <div class="timeline-image">
+                    <img class="img-circle img-responsive" heigth="499" width ="500" src="img//r1/panacam.jpg" alt="">
+                  </div>
+                  <div class="timeline-panel">
+                    <div class="timeline-heading">
+                      <h4>Step Two</h4>
+                      <h4 class="subheading">Subtitle</h4>
+                    </div>
+                    <div class="timeline-body">
+                      <p class="text-muted">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                      </p>
+                    </div>
+                  </div>
+                  <div class="line"></div>
+                </li>
+                <li>
+                  <div class="timeline-image">
+                    <img class="img-circle img-responsive" src="img/r1/siguatepeque.jpg" alt="">
+                  </div>
+                  <div class="timeline-panel">
+                    <div class="timeline-heading">
+                      <h4>Step Three</h4>
+                      <h4 class="subheading">Subtitle</h4>
+                    </div>
+                    <div class="timeline-body">
+                      <p class="text-muted">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                      </p>
+                    </div>
+                  </div>
+                  <div class="line"></div>
+                </li>
+                <li class="timeline-inverted">
+                  <div class="timeline-image">
+                    <img class="img-circle img-responsive" src="img/r1/tegucigalpa.jpg" alt="">
+                  </div>
+                  <div class="timeline-panel">
+                    <div class="timeline-heading">
+                      <h4>Step Three</h4>
+                      <h4 class="subheading">Subtitle</h4>
+                    </div>
+                    <div class="timeline-body">
+                      <p class="text-muted">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                      </p>
+                    </div>
+                  </div>
+                  <div class="line"></div>
+                </li>
+                <li>
+                  <div class="timeline-image">
+                    <img class="img-circle img-responsive" src="img/playa.png" alt="">
+                  </div>
+                  <div class="timeline-panel">
+                    <div class="timeline-heading">
+                      <h4>Bonus Step</h4>
+                      <h4 class="subheading">Subtitle</h4>
+                    </div>
+                    <div class="timeline-body">
+                      <p class="text-muted">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                      </p>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+                    </div>                                        
+                    <div id="detalleR2" class="hidden">
+                        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <h3 class="text-center">La ruta a seguir es la siguiente</h3>
+              <p>Para poder alcanzar tu destino es necesario que te guies por esta secuencia 
+                 delugares que te seran agradables, en ellos podras disfrutar de lo maravilloso 
+                 que es nuestro país HONDURAS.
+              </p>
+              <ul class="timeline">
+                <li>
+                  <div class="timeline-image">
+                    <img class="img-circle img-responsive" src="img/r2/ceiba.jpg" alt="">
+                  </div>
+                  <div class="timeline-panel">
+                    <div class="timeline-heading">
+                      <h4>Step One</h4>
+                      <h4 class="subheading">Subtitle</h4>
+                    </div>
+                    <div class="timeline-body">
+                      <p class="text-muted">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                      </p>
+                    </div>
+                  </div>
+                  <div class="line"></div>
+                </li>
+                <li class="timeline-inverted">
+                  <div class="timeline-image">
+                    <img class="img-circle img-responsive" src="img/r2/tela.jpg" width = "250" height = "250" alt="">
+                  </div>
+                  <div class="timeline-panel">
+                    <div class="timeline-heading">
+                      <h4>Step Two</h4>
+                      <h4 class="subheading">Subtitle</h4>
+                    </div>
+                    <div class="timeline-body">
+                      <p class="text-muted">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                      </p>
+                    </div>
+                  </div>
+                  
+                </li>
+                
+              </ul>
+            </div>
+          </div>
+        </div>
+                    </div>                                
+
                 </div>
             </div>
         </div>
@@ -87,13 +312,13 @@
 
  
 
-    <!-- About Section -->
+    <!-- About Section
 
 
     <!-- Contact Section -->
  
     <!-- Footer -->
-    <!-- <footer class="text-center">
+    <footer class="text-center">
         <div class="footer-above">
             <div class="container">
                 <div class="row">
@@ -137,7 +362,7 @@
                 </div>
             </div>
         </div>
-    </footer> -->
+    </footer>
 
     <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
     <div class="scroll-top page-scroll visible-xs visible-sm">
@@ -168,6 +393,8 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="js/freelancer.js"></script>
+
+     <script src = "js/crazyFunctions.js"></script>
 
 </body>
 
